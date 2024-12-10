@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header-bg{
+    background-image: url('https://res.cloudinary.com/dbeaoqifi/image/upload/v1729576144/header-bg_bojfzb.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+        
+
+}
+
+@layer base {
+  :root {
+        --radius: 0.5rem;
+        
+
+    }
+        
+
+}
