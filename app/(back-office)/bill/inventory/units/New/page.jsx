@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import React, { useState } from 'react';
 import Formheader from '../../../../../../components/dashboard/Formheader';
-import Textinput from '../../../../../../components/Forminputs/Textinput';
+import Textinput from '../../../../../../components/Forminputs/textinput';
 import SubmitButton from '../../../../../../components/Forminputs/SubmitButton';
 import { makeApiRequest, makePutRequest } from "@/lib/apiRequest"; 
 import { useRouter } from "next/navigation";

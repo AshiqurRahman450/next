@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import React, { useState } from 'react';
 import Formheader from '../dashboard/Formheader';
-import Textinput from '../Forminputs/Textinput';
+import Textinput from '../Forminputs/textinput';
 import SubmitButton from '../Forminputs/SubmitButton';
 import Textareainput from '../Forminputs/Textareainput';
 import Selectinput from '../Forminputs/Selectinput'
