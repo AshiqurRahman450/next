@@ -53,7 +53,7 @@ export async function GET(request){
             },
             include: {
                 category: true,  // Returns all fields for all categories
-                supplier: true, // Returns all Profile fields
+                warehouse: true, // Returns all Profile fields
             },
         })
         return NextResponse.json(items);
@@ -67,3 +67,27 @@ export async function GET(request){
         })
     }
 }
+
+
+export async function DELETE(request){
+    try {
+     const id=request.nextUrl.searchParams.get("id")
+     console.log(id)
+     const deleteitem= await db.item.delete({
+         where: {
+              id
+         },
+     })
+     console.log(deleteitem)
+     return NextResponse.json(deleteitem)
+    } catch (error) {
+     console.log(error)
+     return NextResponse.json({
+         error,
+         message:"Failed to Delete Item"
+     },{
+         status:500
+     })
+     
+    }
+ }

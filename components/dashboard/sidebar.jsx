@@ -50,34 +50,14 @@ export default function Sidebar({showSidebar,setShowSidebar}) {
       title:"Customers",
       href:""
     },
-    {
-      title:"Sales Order",
-      href:""
-    },
-    {
-      title:"Packages",
-      href:""
-    },
-    {
-      title:"Shipments",
-      href:""
-    },
+   
+   
+   
     {
       title:"Invoices",
       href:""
     },
-    {
-      title:"Sales Receipt",
-      href:""
-    },
-    {
-      title:"Payment Receipt",
-      href:""
-    },
-    {
-      title:"Credit Note",
-      href:""
-    },
+    
   ]
   
   return (
@@ -97,7 +77,7 @@ export default function Sidebar({showSidebar,setShowSidebar}) {
 
         {/* Links */}
         <nav className='flex flex-col gap-3 py-4 px-3 py-6'>
-          <a href='#' className='flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 rounded-md'>
+          <a href='/bill/home/dashboard' className='flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 rounded-md'>
             <Home />
             <span>Home</span>
           </a>

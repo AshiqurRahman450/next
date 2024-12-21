@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 
 export default function createItemForm({categories,units,brands,warehouses,supplier,initialData={},isUpdate=false}) {
   const router = useRouter()
-  const [imageUrl,setImageUrl] = useState('')
+  const [imageUrl,setImageUrl] = useState(initialData.imageUrl)
  
  
   const { register, handleSubmit, reset, formState: { errors } } = useForm({defaultValues:initialData

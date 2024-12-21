@@ -45,3 +45,26 @@ export async function GET(request){
         })
     }
 }
+
+export async function DELETE(request){
+    try {
+     const id=request.nextUrl.searchParams.get("id")
+     console.log(id)
+     const deleteTS= await db.transferStockAdjustment.delete({
+         where: {
+              id
+         },
+     })
+     console.log(deleteTS)
+     return NextResponse.json(deleteTS)
+    } catch (error) {
+     console.log(error)
+     return NextResponse.json({
+         error,
+         message:"Failed to Delete Transfer Stock"
+     },{
+         status:500
+     })
+     
+    }
+ }

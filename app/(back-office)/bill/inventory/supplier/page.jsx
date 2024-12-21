@@ -14,7 +14,7 @@ export default async function Suppliers() {
 
       {/* table */}
       <div className='my-4 p-8'>
-        <DataTable data={suppliers} columns={columns} resourceTitle="supplier"/>
+        <DataTable data={suppliers} columns={columns} resourceTitle="supplier" resourceTitles="supplier"/>
       </div>
         
      

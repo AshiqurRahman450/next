@@ -48,9 +48,9 @@ export default function SalesOverview() {
   return (
     <div className='bg-blue-50 border-b border-slate-300  grid grid-cols-12 '>
         {/* Sales Activity */}
-        <div className="col-span-8 border-r border-slate-300 p-8">
+        <div className="col-span-full lg:col-span-8 border-r border-slate-300 p-8 py-16 lg:py-8">
             <h2 className='mb-6 text-xl'>Sales Activity</h2>
-            <div className="flex gap-8  ">
+            <div className=" md:grid-cols-2 lg:flex gap-8  ">
                 {/* Card */}
                 {
                     salesActivity.map((item,i)=>{
@@ -70,7 +70,7 @@ export default function SalesOverview() {
             </div>
         </div>
         {/* Inventory Summary */}
-        <div className="col-span-4 p-8">
+        <div className="col-span-full lg:col-span-4 p-8">
         <h2 className='mb-6 text-xl ml-4'>Inventory Summary</h2>
         <div className=''>
            {

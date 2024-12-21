@@ -14,7 +14,7 @@ export default async function Units() {
 
       {/* table */}
       <div className='my-4 p-8'>
-        <DataTable data={units} columns={columns} resourceTitle="units"/>
+        <DataTable data={units} columns={columns} resourceTitle="units" resourceTitles="units"/>
       </div>
         
      

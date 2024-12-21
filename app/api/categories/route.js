@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import db from '../../../lib/db'
 import { NextResponse } from "next/server";
 
@@ -44,4 +45,27 @@ export async function GET(request){
             status:500
         })
     }
+}
+
+export async function DELETE(request){
+   try {
+    const id=request.nextUrl.searchParams.get("id")
+    console.log(id)
+    const deletecategory= await db.category.delete({
+        where: {
+             id
+        },
+    })
+    console.log(deletecategory)
+    return NextResponse.json(deletecategory)
+   } catch (error) {
+    console.log(error)
+    return NextResponse.json({
+        error,
+        message:"Failed to Delete Category"
+    },{
+        status:500
+    })
+    
+   }
 }

@@ -5,8 +5,9 @@ import {getData} from '../../../../../lib/getData'
 
 export default async function Items() {
   const items = await getData("items");
+  console.log(items)
  
-  const columns = ["imageUrl","title","sellingPrice","buyingPrice","category.title"]
+  const columns = ["imageUrl","title","sellingPrice","buyingPrice","quantity","category.title"]
   return (
     <div>
       {/* Header */}
@@ -14,7 +15,8 @@ export default async function Items() {
 
       {/* table */}
       <div className='my-4 p-8'>
-        <DataTable data={items} columns={columns} resourceTitle="items"/>
+        <DataTable data={items} columns={columns} resourceTitle="items" resourceTitles="items"/>
+        
       </div>
         
      

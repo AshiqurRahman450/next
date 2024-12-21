@@ -38,3 +38,26 @@ export async function POST(request) {
         })
     }
 }
+
+export async function DELETE(request){
+  try {
+   const id=request.nextUrl.searchParams.get("id")
+   console.log(id)
+   const deletesupplier= await db.supplier.delete({
+       where: {
+            id
+       },
+   })
+   console.log(deletesupplier)
+   return NextResponse.json(deletesupplier)
+  } catch (error) {
+   console.log(error)
+   return NextResponse.json({
+       error,
+       message:"Failed to Delete Supplier"
+   },{
+       status:500
+   })
+   
+  }
+}

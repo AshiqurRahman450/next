@@ -45,3 +45,27 @@ export async function GET(request){
         })
     }
 }
+
+
+export async function DELETE(request){
+    try {
+     const id=request.nextUrl.searchParams.get("id")
+     console.log(id)
+     const deleteAS= await db.addStockAdjustment.delete({
+         where: {
+              id
+         },
+     })
+     console.log(deleteAS)
+     return NextResponse.json(deleteAS)
+    } catch (error) {
+     console.log(error)
+     return NextResponse.json({
+         error,
+         message:"Failed to Delete Add Stock"
+     },{
+         status:500
+     })
+     
+    }
+ }

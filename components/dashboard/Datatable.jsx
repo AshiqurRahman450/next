@@ -1,46 +1,39 @@
 import { Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
+import DeleteBtn from "../dashboard/DeleteBtn";
 
-export default function DataTable({ data = [], columns = [], resourceTitle }) {
+export default function DataTable({ data = [], columns = [], resourceTitle, resourceTitles }) {
+  console.log(data);
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            {columns.map((columnName, i) => {
-              return (
+      {data.length > 0 ? (
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              {columns.map((columnName, i) => (
                 <th key={i} scope="col" className="px-6 py-3">
                   {columnName}
                 </th>
-              );
-            })}
-            <th scope="col" className="px-6 py-3">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, i) => {
-            return (
+              ))}
+              <th scope="col" className="px-6 py-3">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((item, i) => (
               <tr
                 key={i}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
-                {/* {columns.map((columnName, i) => {
-                  return (
-                    <td key={i} className="px-6 py-4">
-                      {item[columnName]}
-                    </td>
-                  );
-                })} */}
                 {columns.map((columnName, i) => (
                   <td key={i} className="px-6 py-4">
                     {columnName.includes(".") ? (
-                      // If the column name contains a dot, it's a nested object
-                      // Access the nested key using reduce
-                      columnName.split(".").reduce((obj, key) => obj[key], item)
-                    ) : columnName === "createdAt" ||
-                      columnName === "updatedAt" ? (
+                      // Safely access nested keys
+                      columnName
+                        .split(".")
+                        .reduce((obj, key) => (obj && obj[key] !== undefined ? obj[key] : undefined), item) || "N/A"
+                    ) : columnName === "createdAt" || columnName === "updatedAt" ? (
                       // Convert date columns to a more readable format
                       new Date(item[columnName]).toLocaleDateString()
                     ) : columnName === "imageUrl" ? (
@@ -56,22 +49,23 @@ export default function DataTable({ data = [], columns = [], resourceTitle }) {
                     )}
                   </td>
                 ))}
-
-<td className="px-6 py-4 flex items-center space-x-4">
-                        <a href={`/bill/inventory/${resourceTitle}/update/${item.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline flex items-center space-x-1">
-                            <Pencil className='w-4 h-4'/>
-                            <span>Edit</span>
-                            </a>
-                            <button className='font-medium text-red-600 dark:text-blue-500  flex items-center space-x-1'>
-                                <Trash2 className='w-4 h-4'/>
-                                <span>Delete</span>
-                            </button>
-                    </td>
+                <td className="px-6 py-4 flex items-center space-x-4">
+                  <a
+                    href={`/bill/inventory/${resourceTitles}/update/${item.id}`}
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline flex items-center space-x-1"
+                  >
+                    <Pencil className="w-4 h-4" />
+                    <span>Edit</span>
+                  </a>
+                  <DeleteBtn id={item.id} endpoint={resourceTitle} />
+                </td>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p className="p-4 text-xl bg-white text-center">There is No Data to display</p>
+      )}
     </div>
   );
 }

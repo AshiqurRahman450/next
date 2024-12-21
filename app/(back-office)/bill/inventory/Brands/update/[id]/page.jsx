@@ -1,4 +1,4 @@
-"use client"
+
 import React from 'react'
 import NewBrand from '../../New/page'
 import { getData } from '@/lib/getData'

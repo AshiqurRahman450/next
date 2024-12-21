@@ -14,7 +14,7 @@ export default async function Brands() {
 
       {/* table */}
       <div className='my-4 p-8'>
-        <DataTable data={brands} columns={columns} resourceTitle="Brands"/>
+        <DataTable data={brands} columns={columns} resourceTitle="brands" resourceTitles="Brands"/>
       </div>
         
      
