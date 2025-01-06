@@ -50,13 +50,15 @@ export default function DataTable({ data = [], columns = [], resourceTitle, reso
                   </td>
                 ))}
                 <td className="px-6 py-4 flex items-center space-x-4">
-                  <a
-                    href={`/bill/inventory/${resourceTitles}/update/${item.id}`}
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline flex items-center space-x-1"
-                  >
-                    <Pencil className="w-4 h-4" />
-                    <span>Edit</span>
-                  </a>
+                  {
+                    resourceTitle.includes("adjustments")?(""):((<a
+                      href={`/bill/inventory/${resourceTitles}/update/${item.id}`}
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline flex items-center space-x-1"
+                    >
+                      <Pencil className="w-4 h-4" />
+                      <span>Edit</span>
+                    </a>))  
+                  }
                   <DeleteBtn id={item.id} endpoint={resourceTitle} />
                 </td>
               </tr>

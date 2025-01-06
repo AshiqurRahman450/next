@@ -7,7 +7,7 @@ export default async function Items() {
   const items = await getData("items");
   console.log(items)
  
-  const columns = ["imageUrl","title","sellingPrice","buyingPrice","quantity","category.title"]
+  const columns = ["imageUrl","title","sellingPrice","buyingPrice","quantity","category.title","warehouse.title"]
   return (
     <div>
       {/* Header */}

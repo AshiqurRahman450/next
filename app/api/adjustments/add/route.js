@@ -3,15 +3,59 @@ import db from "../../../../lib/db";
 
 export async function POST(request){
     try{
-        const {addStockQty,warehouseId,notes,referenceNumber,itemId} = await request.json();
+        const {addStockQty,warehouseId,notes,referenceNumber,itemId,supplierId} = await request.json();
+
+        // Get the Item
+        const itemToUpdate = await db.item.findUnique({
+            where:{
+                id:itemId 
+            }
+        })
+        // console.log(itemToUpdate)
+        // Current Item Quantity
+        const currentItemQty =itemToUpdate.quantity;
+        const newQty = parseInt(currentItemQty) + parseInt(addStockQty)
+        console.log(newQty)
+
+         // // Modify  the Item to the New Qty 
+        const Updateditem= await db.item.update({
+            where: {
+                id :itemId
+            },
+            data: {
+                quantity:newQty,
+            },
+        });
+        // Get the Warehouse
+       const warehouse = await db.warehouse.findUnique({
+        where:{
+            id:warehouseId
+        }
+       })
+       //Current stock of the warehouse
+       const currentWarehouseStock = warehouse.stockQty
+       const newStockQty = parseInt(currentWarehouseStock) + parseInt(addStockQty)
+       //Update Stock on the warehouse
+       const updatedWarehouse = await db.warehouse.update({
+        where:{
+            id:warehouseId
+        },
+        data:{
+            stockQty:newStockQty
+        }
+       })
+
        
 
         const adjustment= await db.addStockAdjustment.create({
             data:{
-                addStockQty: parseInt(addStockQty),itemId,warehouseId,notes,referenceNumber
+                addStockQty: parseInt(addStockQty),itemId,warehouseId,notes,referenceNumber,supplierId
                 
             }
         });
+        
+       
+
         console.log(adjustment)
         return NextResponse.json(adjustment);
 
@@ -32,6 +76,10 @@ export async function GET(request){
         const adjustments = await db.addStockAdjustment.findMany({
             orderBy: {
                 createdAt: 'desc' //Latest Item
+            },
+            include: {
+                supplier: true,  // Returns all fields for all categories
+                
             },
         })
         return NextResponse.json(adjustments);

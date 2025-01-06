@@ -7,8 +7,8 @@ export default async function Adjustments() {
   const addAdjustments = await getData("adjustments/add");
   const transferAdjustments = await getData("adjustments/transfer");
  
-  const addcolumns = ["referenceNumber","addStockQty"]
-  const transfercolumns = ["referenceNumber","transferStockQty"]
+  const addcolumns = ["referenceNumber","addStockQty","createdAt","supplier.title"]
+  const transfercolumns = ["referenceNumber","transferStockQty","createdAt"]
 
   return (
     <div>

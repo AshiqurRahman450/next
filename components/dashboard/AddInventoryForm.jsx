@@ -8,7 +8,7 @@ import Textareainput from '../Forminputs/Textareainput';
 import Selectinput from '../Forminputs/Selectinput'
 import { makeApiRequest } from "@/lib/apiRequest";
 
-export default function AddInventoryform({items,warehouses}) {
+export default function AddInventoryform({items,warehouses,suppliers}) {
   
   
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -42,6 +42,9 @@ export default function AddInventoryform({items,warehouses}) {
           </div>
           <div className="flex-1 ">
        <Selectinput name="itemId" label="Select the Item" register={register} className="w-full" options={items}/>
+       </div>
+       <div className="flex-1 ">
+       <Selectinput name="supplierId" label="Select the Supplier" register={register} className="w-full" options={suppliers}/>
        </div>
           <div className="flex-1 mb-5.5">
             <Textinput

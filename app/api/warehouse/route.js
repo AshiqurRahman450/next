@@ -56,6 +56,9 @@ export async function DELETE(request){
          where: {
               id
          },
+         include:{
+            item:true
+         }
      })
      console.log(deletewarehouse)
      return NextResponse.json(deletewarehouse)

@@ -1,9 +1,13 @@
+"use client"
 import { AlignJustify, Bell, ChevronDown, History, LayoutGrid, Plus, Settings, User2, Users } from 'lucide-react'
 import React from 'react'
 import Searchinput from '../../components/dashboard/searchinput'
 import Image from 'next/image'
+import { useSession } from 'next-auth/react'
 
 export default function Header({setShowSidebar}) {
+  const {data:session} = useSession()
+  const username = session.user.name
   function handleClick(){
     console.log("btn clicked")
      setShowSidebar(true)
@@ -40,7 +44,7 @@ export default function Header({setShowSidebar}) {
        </div>
        <div className='flex gap-3'>
         <button className='flex item-center'>
-          <span>Ashik</span>
+          <span>{username}</span>
           <ChevronDown className='w-4 h-4 mt-1.5'/>
         </button>
        

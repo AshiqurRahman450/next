@@ -133,33 +133,13 @@ export default function Sidebar({showSidebar,setShowSidebar}) {
 
          
          
-          <button className='flex items-center space-x-2 p-2'>
-            <ShoppingBag />
-            <span>Purchase</span>
-          </button>
-          <a href='#' className='flex items-center space-x-2 p-2'>
-            <Cable />
-            <span>Integrations</span>
-          </a>
-          <a href='#' className='flex items-center space-x-2 p-2'>
-            <BarChart />
-            <span>Report</span>
-          </a>
-          <a href='#' className='flex items-center space-x-2 p-2'>
-            <Files />
-            <span>Documents</span>
-          </a>
+          
         </nav>
-        <SubscriptionCard />
+      
       </div>
 
       {/* Bottom */}
-      <div className="flex flex-col mt-14">
-        <button className="bg-slate-950 flex justify-center items-center py-3 px-2">
-          <ChevronLeft />
-        </button>
-      </div>
-
+      
       {/* Footer Icon or Subscription Card can be added here */}
     </div>
   );

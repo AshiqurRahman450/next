@@ -6,7 +6,25 @@ import Suppliers from "@/app/(back-office)/bill/inventory/supplier/page";
 export async function POST(request){
     try{
         const itemData = await request.json();
-       
+       // Get the Warehouse
+       const warehouse = await db.warehouse.findUnique({
+        where:{
+            id:itemData.WarehouseId
+        }
+       })
+       //Current stock of the warehouse
+       const currentWarehouseStock = warehouse.stockQty
+       const newStockQty = parseInt(currentWarehouseStock) + parseInt(itemData.quantity)
+       //Update Stock on the warehouse
+       const updatedWarehouse = await db.warehouse.update({
+        where:{
+            id:itemData.WarehouseId
+        },
+        data:{
+            stockQty:newStockQty
+        }
+       })
+
 
         const item= await db.item.create({
             data:{
