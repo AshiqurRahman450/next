@@ -9,7 +9,7 @@ import { makeApiRequest, makePutRequest } from "@/lib/apiRequest";
 import { useRouter } from "next/navigation";
 
 
-export default function NewBrand({initialData={},isUpdate=false}) {
+export default function NewBrand({initialData=[],isUpdate=false}) {
   const router = useRouter()
   const { register, handleSubmit, reset, formState: { errors } } = useForm({defaultValues:initialData});
   const [loading, setLoading] = useState(false);
